@@ -13,6 +13,8 @@ int main() {
     FILE *nomes;
     int cod;
     char lista[1000];
+    int multa;
+
 while (j==1){
     printf ("---------------Loca-Loca Locadora---------------\n");
     printf ("\n\n1 - Cadastrar um novo cliente");
@@ -55,15 +57,17 @@ while (j==1){
             system("cls");
             printf("Digite o nome do filme:\n");
             scanf("\n%[^\n]",filme);
-            printf ("Digite o preco do aluguel:\n");
+            printf ("Digite o preco do aluguel em reais:\n");
             scanf ("%d", &preco);
             printf ("Digite o codigo do filme:\n");
             scanf ("%d", &cod);
+            printf ("Digite a multa do filme em reais:\n");
+            scanf ("%d", &multa);
             system("cls");
             printf("Filme %s registrado pelo preco de %d reais!\n", filme, preco);
 
             fp=fopen("filmes.txt", "a");
-            fprintf (fp, "Filme: %s | Preco: %d reais | Codigo: %d | \n", filme, preco, cod);
+            fprintf (fp, "Filme: %s | Preco: %d reais | Codigo: %d | Multa: %d reais\n", filme, preco, cod, multa);
             fclose(fp);
             printf ("Caso queira retornar, digite 1, caso queira fechar o programa, digite 2\n");
             scanf ("%d", &j);
@@ -103,4 +107,3 @@ while (j==1){
     }
 }
 }
-
