@@ -12,6 +12,7 @@ int main() {
     FILE *fp;
     FILE *nomes;
     int cod;
+    char lista[1000];
 while (j==1){
     printf ("---------------Loca-Loca Locadora---------------\n");
     printf ("\n\n1 - Cadastrar um novo cliente");
@@ -19,8 +20,9 @@ while (j==1){
     printf ("\n3 - Listar filmes registrados");
     printf ("\n4 - Listar usuarios registrados");
     printf ("\n5 - Consultar Filme");
-    printf ("\n6 - Gerar relatorio");
-    printf ("\n7 - Gerar relatorio em PDF");
+    printf ("\n6 - Alugar um filme");
+    printf ("\n7 - Gerar relatorio");
+    printf ("\n8 - Gerar relatorio em PDF");
     printf ("\n0 - Sair da loca-loca locadora\n");
     scanf("%d", &op);
 
@@ -60,16 +62,45 @@ while (j==1){
             system("cls");
             printf("Filme %s registrado pelo preco de %d reais!\n", filme, preco);
 
-            fp=fopen("filmes.txt", "w");
+            fp=fopen("filmes.txt", "a");
             fprintf (fp, "Filme: %s | Preco: %d reais | Codigo: %d | \n", filme, preco, cod);
             fclose(fp);
             printf ("Caso queira retornar, digite 1, caso queira fechar o programa, digite 2\n");
             scanf ("%d", &j);
             system("cls");
             break;
+
+
+        case 3:
+
+        system ("cls");
+        fp=fopen ("filmes.txt", "r");
+        while (fgets(lista,1000,fp) != NULL){
+        printf ("%s", lista);
+}
+        fclose(fp);
+        printf ("Caso queira retornar, digite 1, caso queira fechar o programa, digite 2\n");
+        scanf ("%d", &j);
+        system ("cls");
+        break;
+
+        case 4:
+
+        system ("cls");
+        nomes=fopen ("clientes.txt", "r");
+        while (fgets(cliente,1000,nomes) != NULL){
+        printf ("%s", cliente);
+}
+        fclose(nomes);
+        printf ("Caso queira retornar, digite 1, caso queira fechar o programa, digite 2\n");
+        scanf ("%d", &j);
+        system ("cls");
+        break;
+
         default :
             printf ("Valor invalido!\n");
             break;
     }
 }
 }
+
