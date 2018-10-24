@@ -11,6 +11,7 @@ int main() {
     int j=1;
     FILE *fp;
     FILE *nomes;
+    int cod;
 while (j==1){
     printf ("---------------Loca-Loca Locadora---------------\n");
     printf ("\n\n1 - Cadastrar um novo cliente");
@@ -54,11 +55,13 @@ while (j==1){
             scanf("\n%[^\n]",filme);
             printf ("Digite o preco do aluguel:\n");
             scanf ("%d", &preco);
+            printf ("Digite o codigo do filme:\n");
+            scanf ("%d", &cod);
             system("cls");
             printf("Filme %s registrado pelo preco de %d reais!\n", filme, preco);
 
-            fp=fopen("filmes.txt", "a");
-            fprintf (fp, "%s\n", filme);
+            fp=fopen("filmes.txt", "w");
+            fprintf (fp, "Filme: %s | Preco: %d reais | Codigo: %d | \n", filme, preco, cod);
             fclose(fp);
             printf ("Caso queira retornar, digite 1, caso queira fechar o programa, digite 2\n");
             scanf ("%d", &j);
