@@ -1,16 +1,16 @@
- #include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
 
 struct  cadastro_filme{
-char nomefilme[50];
-float preco;
-int statusfilme;
+    char nomefilme[50];
+    float preco;
+    int statusfilme;
 };
 
 struct cadastro_cliente{
-char nomecliente[50];
-int statuscliente;
+    char nomecliente[50];
+    int statuscliente;
 };
 
 int main() {
@@ -23,7 +23,19 @@ int main() {
     int i;
     FILE *txt_filmes;
     FILE *txt_clientes;
-    memset(tcliente,0,sizeof (tcliente));
+    memset (tcliente, 0, sizeof(tcliente));
+    memset (tfilme, 0, sizeof(tfilme));
+
+    txt_clientes=fopen("clientes.txt", "r");
+    txt_filmes=fopen("filmes.txt", "r");
+    if(txt_filmes != NULL){
+        fread(tfilme, sizeof(struct cadastro_filme), 1000, txt_filmes);
+    }
+
+    if(txt_clientes != NULL){
+        fread(tcliente, sizeof(struct cadastro_cliente), 1000, txt_clientes);
+    }
+
 while (j==1){
     printf ("---------------Loca-Loca Locadora---------------\n");
     printf ("\n\n1 - Cadastrar um novo cliente");
@@ -37,9 +49,10 @@ while (j==1){
     printf ("\n0 - Sair da loca-loca locadora\n");
     scanf("%d", &op);
 
+
     switch(op)
     {
-        case 1:
+         case 1:
 
                system("cls");
                for(i=0;i<1000;i++){
