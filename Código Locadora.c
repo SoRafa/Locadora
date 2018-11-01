@@ -1,20 +1,29 @@
-#include <stdio.h>
+ #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
 
+struct  cadastro_filme{
+char nomefilme[50];
+float preco;
+int statusfilme;
+};
+
+struct cadastro_cliente{
+char nomecliente[50];
+int statuscliente;
+};
 
 int main() {
+    struct cadastro_filme tfilme[1000];
+    struct cadastro_cliente tcliente[1000];
     int op;
     char cliente[100];
-    char filme[1000];
     int preco;
     int j=1;
-    FILE *fp;
-    FILE *nomes;
-    int cod;
-    char lista[1000];
-    int multa;
-
+    int i;
+    FILE *txt_filmes;
+    FILE *txt_clientes;
+    memset(tcliente,0,sizeof (tcliente));
 while (j==1){
     printf ("---------------Loca-Loca Locadora---------------\n");
     printf ("\n\n1 - Cadastrar um novo cliente");
@@ -28,80 +37,73 @@ while (j==1){
     printf ("\n0 - Sair da loca-loca locadora\n");
     scanf("%d", &op);
 
-
     switch(op)
     {
-        case 0:
-
-            system("cls");
-            printf ("Obrigado pela preferencia!");
-            return 0;
-            break;
-
         case 1:
 
-            system("cls");
-            printf("Digite o nome do cliente:\n");
-            scanf("\n%[^\n]", &cliente);
-            printf ("Cliente %s registrado!\n", cliente);
-            nomes=fopen("clientes.txt", "a");
-            fprintf (nomes, "%s\n", cliente);
-            fclose(nomes);
-            printf ("Caso queira retornar, digite 1, caso queira fechar o programa, digite 2\n");
-            scanf ("%d", &j);
-            system("cls");
-            break;
+               system("cls");
+               for(i=0;i<1000;i++){
+               if(tcliente[i].statuscliente == 0){
+           printf("Digite o nome do cliente: ");
+           fflush(stdin);
+           fgets(tcliente[i].nomecliente, 40, stdin);
+           printf("cliente registrado sobre o nome de %s! ",tcliente[i].nomecliente);
+            tcliente[i].statuscliente=1;
+           txt_clientes=fopen("clientes.txt", "w");
+           fwrite (tcliente, sizeof (struct  cadastro_cliente),1000,txt_clientes);
+           fclose(txt_clientes);
 
+           printf("Se deseja cadastrar novo cliente digite 0, se quiser voltar ao menu digite 1:\n");
+           scanf("%d",&j);
+           if(j==1)
+           break;
+            }
+            }
+           system("cls");
+            break;
         case 2:
 
             system("cls");
-            printf("Digite o nome do filme:\n");
-            scanf("\n%[^\n]",filme);
-            printf ("Digite o preco do aluguel em reais:\n");
-            scanf ("%d", &preco);
-            printf ("Digite o codigo do filme:\n");
-            scanf ("%d", &cod);
-            printf ("Digite a multa do filme em reais:\n");
-            scanf ("%d", &multa);
-            system("cls");
-            printf("Filme %s registrado pelo preco de %d reais!\n", filme, preco);
+             for(i=0;i<1000;i++)
+             if(tcliente[i].statuscliente == 0){
+           printf("Digite o nome do filme: ");
+           fflush(stdin);
+           fgets(tfilme[i].nomefilme, 40, stdin);
+           printf("Digite o preço do filme");
+           scanf("%f", &tfilme[i].preco);
+           printf("filme %s registrado sobre o valor de %.2f",tfilme[i].nomefilme,tfilme[i].preco);
+           tfilme[i].statusfilme = 1;
 
-            fp=fopen("filmes.txt", "a");
-            fprintf (fp, "Filme: %s | Preco: %d reais | Codigo: %d | Multa: %d reais\n", filme, preco, cod, multa);
-            fclose(fp);
+            txt_filmes=fopen("filmes.txt", "a");
+            fwrite (tfilme, sizeof (struct  cadastro_filme),1000,txt_filmes);
+            fclose(txt_filmes);
+             }
             printf ("Caso queira retornar, digite 1, caso queira fechar o programa, digite 2\n");
             scanf ("%d", &j);
             system("cls");
-            break;
 
+            break;
 
         case 3:
 
-        system ("cls");
-        fp=fopen ("filmes.txt", "r");
-        while (fgets(lista,1000,fp) != NULL){
-        printf ("%s", lista);
-}
-        fclose(fp);
-        printf ("Caso queira retornar, digite 1, caso queira fechar o programa, digite 2\n");
-        scanf ("%d", &j);
-        system ("cls");
-        break;
+            system("cls");
+            for(i=0;i>1000;i++ ){
+             if(tfilme[i].statusfilme==1)
+                printf("%s",tfilme[i].nomefilme[i]);
 
-        case 4:
+            }
+             break;
+ case 4:
 
-        system ("cls");
-        nomes=fopen ("clientes.txt", "r");
-        while (fgets(cliente,1000,nomes) != NULL){
-        printf ("%s", cliente);
-}
-        fclose(nomes);
-        printf ("Caso queira retornar, digite 1, caso queira fechar o programa, digite 2\n");
-        scanf ("%d", &j);
-        system ("cls");
-        break;
+            system("cls");
+            for(i=0;i>1000;i++ ){
+             if(tcliente[i].statuscliente==1)
+                printf("%s",tcliente[i].nomecliente[i]);
 
-        default :
+            }
+             break;
+
+            default :
             printf ("Valor invalido!\n");
             break;
     }
