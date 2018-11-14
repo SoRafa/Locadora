@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <sys/time.h>
 
 struct  cadastro_filme{
     char nomefilme[50];
@@ -17,12 +18,13 @@ struct cadastro_cliente{
 struct  aluguel{
     char aluga_filme;
     int multa;
+    struct timeval tv;
 };
 
 int main() {
     struct cadastro_filme tfilme[1000];
     struct cadastro_cliente tcliente[1000];
-    struct  aluguel  taluguel[40];
+    struct aluguel taluguel[40];
     int op;
     char consulta_filme[40];
     char consulta_cliente;
@@ -181,6 +183,7 @@ while (j==1){
 
             if(aux==1){
             tfilme[i].alugado = 1;
+            gettimeofday(&taluguel[i].tv, NULL);
             } else if(aux != 1){
                 break;
             }}
@@ -195,6 +198,12 @@ while (j==1){
             system("cls");
         break;
 
+    case 7:
+        break;
+
+    case 8:
+        break;
+
     case 0:
             system("cls");
             printf ("Obrigado pela preferencia!\n");
@@ -204,3 +213,4 @@ while (j==1){
         }
     }
 }
+
