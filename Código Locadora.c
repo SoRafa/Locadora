@@ -52,6 +52,13 @@ while (j==1){
 
     switch(op)
     {
+
+        default:
+
+            printf ("Valor invalido!\n");
+            break;
+
+
          case 1:
 
                system("cls");
@@ -77,19 +84,20 @@ while (j==1){
         case 2:
 
             system("cls");
-             for(i=0;i<1000;i++)
-             if(tcliente[i].statuscliente == 0){
+           for(i=0;i<1000;i++)
+                    if(tfilme[i].statusfilme == 0){
            printf("Digite o nome do filme: ");
            fflush(stdin);
            fgets(tfilme[i].nomefilme, 40, stdin);
-           printf("Digite o preço do filme");
+           printf("Digite o preço do filme: ");
            scanf("%f", &tfilme[i].preco);
-           printf("filme %s registrado sobre o valor de %.2f",tfilme[i].nomefilme,tfilme[i].preco);
+           printf("filme %s registrado sobre o valor de %.2f\n",tfilme[i].nomefilme,tfilme[i].preco);
            tfilme[i].statusfilme = 1;
 
-            txt_filmes=fopen("filmes.txt", "a");
+            txt_filmes=fopen("filmes.txt", "w");
             fwrite (tfilme, sizeof (struct  cadastro_filme),1000,txt_filmes);
             fclose(txt_filmes);
+            break;
              }
             printf ("Caso queira retornar, digite 1, caso queira fechar o programa, digite 2\n");
             scanf ("%d", &j);
@@ -100,25 +108,34 @@ while (j==1){
         case 3:
 
             system("cls");
-            for(i=0;i>1000;i++ ){
-             if(tfilme[i].statusfilme==1)
-                printf("%s",tfilme[i].nomefilme[i]);
+            for(i=0;i<1000;i++ ){
+             if(tfilme[i].statusfilme==0)
+                continue;
+                printf("%s",tfilme[i].nomefilme);
 
             }
              break;
  case 4:
 
             system("cls");
-            for(i=0;i>1000;i++ ){
-             if(tcliente[i].statuscliente==1)
-                printf("%s",tcliente[i].nomecliente[i]);
+            for(i=0;i<1000;i++ ){
+             if(tcliente[i].statuscliente==0)
+                continue;
+                printf("%s",tcliente[i].nomecliente);
 
             }
              break;
 
-            default :
-            printf ("Valor invalido!\n");
+
+
+ case 0:
+
+
+            system("cls");
+            printf ("Obrigado pela preferencia!\n");
+            return 0;
             break;
+
     }
 }
 }
