@@ -178,7 +178,7 @@ while (j==1){
         system("cls");
         break;
 
-    case 6: /* alugar filme */
+        case 6: /* alugar filme */
             system("cls");
             if(txt_filmes == NULL){
                 printf("\nFalha ao abrir arquivo!");
@@ -216,7 +216,44 @@ while (j==1){
             system("cls");
         break;
 
-    case 0:
+                case 7: /* Devolver um Filme */
+        system("cls");
+            printf("Digite o nome do filme que deseja devolver:\n");
+            scanf("\n%[^\n]", &consulta_filme);
+            for(i = 0; i < 1000; i++){
+
+                if (strstr(tfilme[i].nomefilme,consulta_filme) == NULL)
+                    continue;
+
+                if( tfilme[i].alugado == 0) {
+                    printf("O filme já está disponível\n");
+                break;
+            }
+            else{
+                printf("Filme %s encontrado!\n Se deseja devolve-lo, digite 1, se deseja voltar ao menu digite 0\n",tfilme[i].nomefilme,tfilme[i].preco);
+                scanf ("%d", &aux);
+
+            if(aux==1){
+            tfilme[i].alugado = 0;
+            gettimeofday(&taluguel[i].tv, NULL);
+            } else if(aux != 1){
+                break;
+            }}
+
+            txt_filmes=fopen("filmes.txt", "w");
+            fwrite (tfilme, sizeof (struct  cadastro_filme),1000,txt_filmes);
+            fclose(txt_filmes);
+            break;
+        }
+            printf ("Caso queira retornar, digite 1, caso queira fechar o programa, digite 2\n");
+            scanf ("%d", &j);
+            system("cls");
+        break;
+
+        case 8:
+        break;
+
+         case 0:
             system("cls");
             printf ("Obrigado pela preferencia!\n");
             return 0;
