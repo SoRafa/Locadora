@@ -65,7 +65,7 @@ while (j==1){
     printf ("\n 4 - Listar usuarios registrados");
     printf ("\n 5 - Consultar Filme");
     printf ("\n 6 - Alugar um filme");
-    printf ("\n 7 - Gerar relatorio");
+    printf ("\n 7 - Devolver um filme");
     printf ("\n 8 - Gerar relatorio em PDF");
     printf ("\n 0 - Sair da loca-loca locadora\n");
     printf (" digite a sua opcao: ");
