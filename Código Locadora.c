@@ -54,12 +54,12 @@ int main() {
     }
 
         if(txt_aluguel != NULL){
-        fread(taluguel, sizeof(struct aluguel), 1000, txt_aluguel);
+        fread(taluguel, sizeof(struct aluguel), 40, txt_aluguel);
     }
 
 while (j==1){
     printf ("---------------Loca-Loca Locadora---------------\n");
-    printf ("\n\n1 - Cadastrar um novo cliente");
+    printf ("\n1 - Cadastrar um novo cliente");
     printf ("\n2 - Cadastrar um novo filme");
     printf ("\n3 - Listar filmes registrados");
     printf ("\n4 - Listar usuarios registrados");
@@ -68,6 +68,7 @@ while (j==1){
     printf ("\n7 - Gerar relatorio");
     printf ("\n8 - Gerar relatorio em PDF");
     printf ("\n0 - Sair da loca-loca locadora\n");
+    printf ("digite a sua opcao: ");
     scanf("%d", &op);
 
 
@@ -93,7 +94,7 @@ while (j==1){
             printf("Se deseja cadastrar novo cliente digite 0, se quiser voltar ao menu digite 1:\n");
             scanf("%d",&j);
             if(j==1)
-        break;
+            break;
         }
     }
     system("cls");
@@ -120,52 +121,69 @@ while (j==1){
             printf ("Caso queira retornar, digite 1, caso queira fechar o programa, digite 2\n");
             scanf ("%d", &j);
             system("cls");
-
             break;
 
         case 3:
             system("cls");
+            if(txt_filmes == NULL){
+                printf("\nFalha ao abrir arquivo!");
+                exit(1);
+            }else{
             for(i=0;i<1000;i++ ){
              if(tfilme[i].statusfilme==0)
                 continue;
                 printf("%s",tfilme[i].nomefilme);
             }
+        }
         break;
 
         case 4:
             system("cls");
+            if(txt_clientes == NULL){
+                printf("\nFalha ao abrir arquivo!");
+                exit(1);
+            }else{
             for(i=0;i<1000;i++ ){
              if(tcliente[i].statuscliente==0)
                 continue;
                 printf("%s",tcliente[i].nomecliente);
-            }
+            }}
         break;
 
         case 5:
             system("cls");
-            printf("Digite o nome do filme desejado:\n");
-            scanf("\n%[^\n]", &consulta_filme);
+            if(txt_filmes == NULL){
+                printf("\nFalha ao abrir arquivo!");
+                exit(1);
+            }else{
+                printf("Digite o nome do filme desejado:\n");
+                scanf("\n%[^\n]", &consulta_filme);
             for(i = 0; i < 1000; i++){
-            if (strstr(tfilme[i].nomefilme,consulta_filme) == NULL)
+                if (strstr(tfilme[i].nomefilme,consulta_filme) == NULL)
                     continue;
 
             printf("filme encontrado %s\n", tfilme[i].nomefilme);
 
             if( tfilme[i].alugado == 1) {
-              printf("filme alugado\n");
-              continue;
-            } else{
-              printf("filme disponivel pelo preco de %.2f Reais\n\n",tfilme[i].preco);
-              continue;
+                printf("filme alugado\n");
+                continue;
+            }else{
+                printf("filme disponivel pelo preco de %.2f Reais\n\n",tfilme[i].preco);
+                continue;
             }
         }
         printf ("Caso queira retornar, digite 1, caso queira fechar o programa, digite 2\n");
         scanf ("%d", &j);
+        }
         system("cls");
         break;
 
     case 6:
             system("cls");
+            if(txt_filmes == NULL){
+                printf("\nFalha ao abrir arquivo!");
+                exit(1);
+        }else{
             printf("Digite o nome do filme que deseja alugar:\n");
             scanf("\n%[^\n]", &consulta_filme);
             for(i = 0; i < 1000; i++){
@@ -194,14 +212,8 @@ while (j==1){
             break;
         }
             printf ("Caso queira retornar, digite 1, caso queira fechar o programa, digite 2\n");
-            scanf ("%d", &j);
+            scanf ("%d", &j);}
             system("cls");
-        break;
-
-    case 7:
-        break;
-
-    case 8:
         break;
 
     case 0:
@@ -213,4 +225,3 @@ while (j==1){
         }
     }
 }
-
