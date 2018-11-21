@@ -59,16 +59,16 @@ int main() {
 
 while (j==1){
     printf ("---------------Loca-Loca Locadora---------------\n");
-    printf ("\n1 - Cadastrar um novo cliente");
-    printf ("\n2 - Cadastrar um novo filme");
-    printf ("\n3 - Listar filmes registrados");
-    printf ("\n4 - Listar usuarios registrados");
-    printf ("\n5 - Consultar Filme");
-    printf ("\n6 - Alugar um filme");
-    printf ("\n7 - Gerar relatorio");
-    printf ("\n8 - Gerar relatorio em PDF");
-    printf ("\n0 - Sair da loca-loca locadora\n");
-    printf ("digite a sua opcao: ");
+    printf ("\n 1 - Cadastrar um novo cliente");
+    printf ("\n 2 - Cadastrar um novo filme");
+    printf ("\n 3 - Listar filmes registrados");
+    printf ("\n 4 - Listar usuarios registrados");
+    printf ("\n 5 - Consultar Filme");
+    printf ("\n 6 - Alugar um filme");
+    printf ("\n 7 - Gerar relatorio");
+    printf ("\n 8 - Gerar relatorio em PDF");
+    printf ("\n 0 - Sair da loca-loca locadora\n");
+    printf (" digite a sua opcao: ");
     scanf("%d", &op);
 
 
@@ -78,7 +78,7 @@ while (j==1){
             printf ("Valor invalido!\n");
             break;
 
-         case 1:
+        case 1: /* cadastrar cliente */
             system("cls");
             for(i=0;i<1000;i++){
             if(tcliente[i].statuscliente == 0){
@@ -100,7 +100,7 @@ while (j==1){
     system("cls");
     break;
 
-        case 2:
+        case 2: /* cadastrar filme */
             system("cls");
             for(i=0;i<1000;i++)
                 if(tfilme[i].statusfilme == 0){
@@ -123,7 +123,7 @@ while (j==1){
             system("cls");
             break;
 
-        case 3:
+        case 3: /* Listar filmes */
             system("cls");
             if(txt_filmes == NULL){
                 printf("\nFalha ao abrir arquivo!");
@@ -137,7 +137,7 @@ while (j==1){
         }
         break;
 
-        case 4:
+        case 4: /* listar clientes */
             system("cls");
             if(txt_clientes == NULL){
                 printf("\nFalha ao abrir arquivo!");
@@ -150,7 +150,7 @@ while (j==1){
             }}
         break;
 
-        case 5:
+        case 5: /* consultar filme */
             system("cls");
             if(txt_filmes == NULL){
                 printf("\nFalha ao abrir arquivo!");
@@ -178,7 +178,7 @@ while (j==1){
         system("cls");
         break;
 
-    case 6:
+    case 6: /* alugar filme */
             system("cls");
             if(txt_filmes == NULL){
                 printf("\nFalha ao abrir arquivo!");
